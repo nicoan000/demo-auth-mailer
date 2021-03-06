@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
 html,
 body {
     color: #f5f5dc;
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-        Helvetica Neue, sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 62.5%;
-    background-color: gray;
+    background-color: #303030;
     width: 100%;
     height: 100%;
 }
@@ -17,7 +18,6 @@ a {
 
 * {
     color: inherit;
-    font-family: Minecraftia;
 }
 
 html {
@@ -31,5 +31,14 @@ html {
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes progress_bar_elapse {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
     }
 }
