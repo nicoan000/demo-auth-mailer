@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { css } from '@emotion/css';
 import Context from '../context/context';
 import LoginForm from '../components/LoginForm/LoginForm';
@@ -47,25 +48,25 @@ const Index = ({ data }) => {
     )
 }
 
-// export const getServerSideProps = async (context) => {
-//     try {
-//         const {data} = await axios.get('');
+export const getServerSideProps = async (context) => {
+    try {
+        const {data} = await axios.get('/api/getUsers', { proxy: { host: '127.0.0.1', port: 3000 } });
 
-//         return {
-//             props: {
-//                 data
-//             }
-//         }
+        return {
+            props: {
+                test: true
+            }
+        }
 
-//     }
-//     catch (e) {
-//         console.log(e);
-//         return {
-//             props: {
-//                 error: "Unhandled error."
-//             }
-//         }
-//     }
-// };
+    }
+    catch (e) {
+        console.log(e);
+        return {
+            props: {
+                error: "Unhandled error."
+            }
+        }
+    }
+};
 
 export default Index;

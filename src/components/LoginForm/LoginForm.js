@@ -17,6 +17,7 @@ const LoginForm = () => {
             // const {password, repeatPassword, username, email} = loginInfo;
             const test = await validateForm(loginInfo);
             console.log('passed', test);
+            console.log(html);
         }
         catch (e) {
             console.log(e);
