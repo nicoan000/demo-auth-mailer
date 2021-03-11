@@ -4,6 +4,7 @@ import { css } from '@emotion/css';
 import Context from '../context/context';
 import LoginForm from '../components/LoginForm/LoginForm';
 import Notification from '../components/Notification/Notification';
+import nc from 'next-connect';
 
 const style_IndexPage = css`
     min-height: 100vh;
@@ -48,16 +49,15 @@ const Index = ({ data }) => {
     )
 }
 
-export const getServerSideProps = async (context) => {
-    try {
-        const {data} = await axios.get('/api/getUsers', { proxy: { host: '127.0.0.1', port: 3000 } });
+export const getServerSideProps = async () => {
+    // const test = await axios.get('http://localhost:3000/api/getUsers')
 
+    try {
         return {
             props: {
                 test: true
             }
         }
-
     }
     catch (e) {
         console.log(e);

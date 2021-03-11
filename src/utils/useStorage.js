@@ -6,4 +6,6 @@ const { Storage } = Cloud;
 const storage = new Storage({
     keyFilename: serviceKey,
     projectId: '106114351042273149982'
-})
+});
+
+export default storage;
