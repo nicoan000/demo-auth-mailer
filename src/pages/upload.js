@@ -1,9 +1,13 @@
 export default function Upload() {
     const uploadPhoto = async (e) => {
         try {
-            const file = e.target.files[0]; // file will become a simple file DOM object
-            const filename = encodeURIComponent(file.name); // file name becomes URI friendly
-            const res = await fetch(`/api/upload-url?file=${filename}`); // sends the filename to the back end, with a URL parameter being the file name
+            const file = e.target.files[0];
+            const filename = encodeURIComponent(file.name);
+            const res = await fetch(`/api/upload-url?file=${filename}`);
+            if (res.status == '406') {
+                throw new Error('Invalid file format. .png or .jpg only')
+            }
+
             const { url, fields } = await res.json();
             const formData = new FormData();
 
@@ -16,14 +20,17 @@ export default function Upload() {
                 body: formData,
             });
 
-            if (upload.ok) {
-                console.log('Uploaded successfully!');
+            if (upload.status == 400) {
+                console.log('File upload is too big.');
+            } else if (!upload.ok){
+                console.log(upload);
+                console.error('Something went wrong with the upload, but the case hasnt been documented.');
             } else {
-                console.error('Upload failed.');
+                console.log('Uploaded successfully!');
             }
         }
         catch (e) {
-            console.log(e);
+            return console.error(e);
         }
     };
 
