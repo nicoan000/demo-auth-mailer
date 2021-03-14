@@ -1,9 +1,7 @@
 import client from '../../utils/useDb';
-import useStorage from '../../utils/useStorage';
 import nc from 'next-connect';
 import multer from 'multer';
 import bodyParser from 'body-parser';
-import { uploadImage } from '../../utils/helper';
 
 const multerMid = multer({
     storage: multer.memoryStorage(),
@@ -16,9 +14,13 @@ const handler = nc()
     .use(multerMid.single('file'))
     .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: false }))
-    .post(async (req, res) => {
+    .use((req, res, next) => {
+        console.log('Im a dummy middleware, do I work?');
+        next();
+    })
+    .get(async (req, res) => {
         try {
-            console.log(req.body);
+            return res.status(200).json({works: true})
             // const myFile = req.file;
             // const imageUrl = await uploadImage(myFile)
             // res

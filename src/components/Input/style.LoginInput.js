@@ -17,13 +17,13 @@ const style_LoginInput = css`
         background-color: #252525;
         outline: none;
         border: none;
-        padding: 4px 6px;
-        border-radius: 3px;
-        box-shadow: 0px 0px 3px 1px black;
+        padding: 8px 6px;
+        border-radius: 3px; 
+        box-shadow: 0px 0px 3px 0px black;
+        font-size: 80%;
 
         &:focus {
             box-shadow: inset 0px 0px 3px 1px black;
-            outline: 1px solid lightblue;
         }
     }
 `;

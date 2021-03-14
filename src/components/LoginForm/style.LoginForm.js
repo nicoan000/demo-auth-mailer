@@ -5,12 +5,12 @@ const style_LoginForm = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: ${colors.background_components};
+    background: linear-gradient(to bottom right, ${colors.background_components_lighter_2}, ${colors.background_components});
     padding: calc(1rem + 5vw);
     border-radius: 5px;
     min-height: 200px;
     width: 300px;
-    box-shadow: 0px 0px 3px 1px black;
+    box-shadow: 0px 0px 10px 1px black;
     font-size: ${fontSizes.standard};    
 
     & a {
