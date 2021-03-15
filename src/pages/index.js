@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { css } from '@emotion/css';
-import Context from '../context/context';
-import LoginForm from '../components/LoginForm/LoginForm';
-import Notification from '../components/Notification/Notification';
 import nc from 'next-connect';
+import { withIronSession} from 'next-iron-session';
+import LoginForm from '../components/LoginForm/LoginForm';
+import AppWrapper from '../components/AppWrapper/AppWrapper';
+import { useRouter } from "next/router";
 
 const style_IndexPage = css`
     min-height: 100vh;
@@ -16,57 +15,42 @@ const style_IndexPage = css`
 `;
 
 const Index = ({ data }) => {
-    const [loginInfo, setLoginInfo] = useState({
-        username: "",
-        password: "",
-        repeatPassword: "",
-        email: ""
-    });
-
-    const [notification, setNotification] = useState({
-        shown: false,
-        msg: ""
-    });
-
-    useEffect(() => {
-        if (notification.shown) {
-            setTimeout(() => {
-                setNotification({ ...notification, shown: false });
-            }, 3000)
-        }
-    }, [notification])
-
     return (
-        <Context.Provider value={{
-            loginInfo, setLoginInfo,
-            notification, setNotification
-        }}>
-            <Notification msg={notification.msg} shown={notification.shown} />
+        <AppWrapper>
             <div className={style_IndexPage}>
-                <LoginForm />
+                <LoginForm 
+                    type="signup"
+                />
             </div>
-        </Context.Provider>
+        </AppWrapper>
     )
 }
 
-export const getServerSideProps = async () => {
-    // const test = await axios.get('http://localhost:3000/api/getUsers')
+export const getServerSideProps = withIronSession(async ({ req, res }) => {
+    const user = req.session.get("user");
 
-    try {
+        if (user) {
+            console.log('user logged in; redirecting to /profile');
+            res.writeHead(307, { Location: '/profile' });
+            res.end();
+            return {
+                props: { user }
+            };
+        }
+
         return {
             props: {
-                test: true
+                user: null
             }
         }
+    },
+    {
+        cookieName: "USER",
+        cookieOptions: {
+            secure: process.env.NODE_ENV === "production" ? true : false
+        },
+        password: process.env.IRON_SESSION_SECRET
     }
-    catch (e) {
-        console.log(e);
-        return {
-            props: {
-                error: "Unhandled error."
-            }
-        }
-    }
-};
+);
 
 export default Index;

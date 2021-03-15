@@ -17,7 +17,6 @@ export const encrypt = (str) => {
 };
 
 export const validate = (userpass, hashedpass, salt) => {
-    console.log(userpass, hashedpass, salt);
     let hash = crypto.createHmac('sha512', salt);
     hash.update(userpass);
     userpass = hash.digest('hex');
