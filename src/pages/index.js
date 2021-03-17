@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import nc from 'next-connect';
-import { withIronSession} from 'next-iron-session';
+import { withIronSession } from 'next-iron-session';
 import LoginForm from '../components/LoginForm/LoginForm';
 import AppWrapper from '../components/AppWrapper/AppWrapper';
 import { useRouter } from "next/router";
@@ -18,7 +18,7 @@ const Index = ({ data }) => {
     return (
         <AppWrapper>
             <div className={style_IndexPage}>
-                <LoginForm 
+                <LoginForm
                     type="signup"
                 />
             </div>
@@ -26,8 +26,9 @@ const Index = ({ data }) => {
     )
 }
 
-export const getServerSideProps = withIronSession(async ({ req, res }) => {
-    const user = req.session.get("user");
+export const getServerSideProps = withIronSession(
+    async ({ req, res }) => {
+        const user = req.session.get("user");
 
         if (user) {
             console.log('user logged in; redirecting to /profile');

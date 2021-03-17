@@ -2,6 +2,8 @@ import React from "react";
 import { css } from '@emotion/css';
 import LoginForm from '../components/LoginForm/LoginForm';
 import AppWrapper from '../components/AppWrapper/AppWrapper';
+import { withIronSession } from "next-iron-session";
+import ironSessionConfig from '../utils/ironSessionConfig';
 
 const style_LogInPage = css`
     min-height: 100vh;
@@ -12,11 +14,11 @@ const style_LogInPage = css`
     justify-content: center;
 `;
 
-const SignInPage = () => {
+const LogInPage = () => {
     return (
         <AppWrapper>
             <div className={style_LogInPage}>
-                <LoginForm 
+                <LoginForm
                     type="login"
                 />
             </div>
@@ -24,4 +26,25 @@ const SignInPage = () => {
     );
 };
 
-export default SignInPage;
+export const getServerSideProps = withIronSession(
+    async ({ req, res }) => {
+        const user = req.session.get("user");
+
+        if (user) {
+            console.log('user already logged in; redirecting to /profile');
+            res.writeHead(307, { Location: '/profile' });
+            res.end();
+            return { props: { user } };
+        }
+
+        return {
+            props: { }
+        };
+    },
+    {
+        ...ironSessionConfig
+    }
+);
+
+
+export default LogInPage;
