@@ -10,7 +10,7 @@ const Input = ({description, field, placeholder, hideContent}) => {
             <div className="description">{description}</div>
             <input 
                 value={loginInfo[field]}
-                type={field}
+                type={field == "repeatPassword" ? "password" : field}
                 onChange={e => setLoginInfo({...loginInfo, [field]: e.target.value})}
                 placeholder={placeholder}
             />

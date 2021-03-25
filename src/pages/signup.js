@@ -4,8 +4,6 @@ import { withIronSession } from 'next-iron-session';
 import LoginForm from '../components/LoginForm/LoginForm';
 import AppWrapper from '../components/AppWrapper/AppWrapper';
 import { useRouter } from "next/router";
-import ironSessionConfig from '../utils/config/ironSessionConfig';
-import GenericDropdown from '../components/GenericDropdown/GenericDropdown';
 
 const style_IndexPage = css`
     min-height: 100vh;
@@ -14,21 +12,19 @@ const style_IndexPage = css`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+
+    & .disclaimer {
+
+    }
 `;
 
-const test_state = [
-    {
-        question_title: "Which ",
-    }
-]
-
-const Index = ({user}) => {
+const Index = ({ data }) => {
     return (
         <AppWrapper>
             <div className={style_IndexPage}>
-                <div>Hello</div>
-                <GenericDropdown />
+                <LoginForm
+                    type="signup"
+                />
             </div>
         </AppWrapper>
     )
@@ -39,6 +35,9 @@ export const getServerSideProps = withIronSession(
         const user = req.session.get("user");
 
         if (user) {
+            console.log('user logged in; redirecting to /profile');
+            res.writeHead(307, { Location: '/profile' });
+            res.end();
             return {
                 props: { user }
             };
@@ -51,7 +50,11 @@ export const getServerSideProps = withIronSession(
         }
     },
     {
-        ...ironSessionConfig
+        cookieName: "USER",
+        cookieOptions: {
+            secure: process.env.NODE_ENV === "production" ? true : false
+        },
+        password: process.env.IRON_SESSION_SECRET
     }
 );
 

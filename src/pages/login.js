@@ -3,7 +3,7 @@ import { css } from '@emotion/css';
 import LoginForm from '../components/LoginForm/LoginForm';
 import AppWrapper from '../components/AppWrapper/AppWrapper';
 import { withIronSession } from "next-iron-session";
-import ironSessionConfig from '../utils/ironSessionConfig';
+import ironSessionConfig from '../utils/config/ironSessionConfig';
 
 const style_LogInPage = css`
     min-height: 100vh;

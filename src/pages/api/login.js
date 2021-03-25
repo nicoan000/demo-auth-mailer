@@ -4,7 +4,7 @@ import { encrypt, validate } from '../../utils/encryption';
 import createUserTable from '../../utils/db/createUserTable';
 import addUser from '../../utils/db/addUser';
 import findUser from '../../utils/db/findUser';
-import ironSessionConfig from '../../utils/ironSessionConfig';
+import ironSessionConfig from '../../utils/config/ironSessionConfig';
 
 export default withIronSession(
     async (req, res) => {

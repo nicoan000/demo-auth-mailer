@@ -1,6 +1,6 @@
 import { Storage } from '@google-cloud/storage';
 import { withIronSession } from 'next-iron-session';
-import ironSessionConfig from '../../utils/ironSessionConfig';
+import ironSessionConfig from '../../utils/config/ironSessionConfig';
 
 export default withIronSession(
     async (req, res) => {

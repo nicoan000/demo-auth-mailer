@@ -1,7 +1,7 @@
 import React from "react";
 import Link from 'next/link';
 import { withIronSession } from "next-iron-session";
-import ironSessionConfig from '../utils/ironSessionConfig';
+import ironSessionConfig from '../utils/config/ironSessionConfig';
 
 const ProfilePage = ({ user }) => (
     <div>
