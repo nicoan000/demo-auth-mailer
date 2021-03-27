@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from "next/router";
-import AppContext from '../../utils/context';
+import AppContext from '@utils/context';
+import validateForm from '@utils/validateForm';
+import LoginInput from '@components/Input/LoginInput';
+import GenericButton from '@components/GenericButton/GenericButton';
 import style from './style.LoginForm';
-import LoginInput from '../Input/LoginInput';
-import GenericButton from '../GenericButton/GenericButton';
-import validateForm from '../../utils/validateForm';
 
 const LoginForm = ({ type, submitFunc }) => {
     const { loginInfo, notification, setNotification } = useContext(AppContext);

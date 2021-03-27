@@ -1,9 +1,9 @@
 import { css } from '@emotion/css';
 import nc from 'next-connect';
-import { withIronSession } from 'next-iron-session';
-import LoginForm from '../components/LoginForm/LoginForm';
-import AppWrapper from '../components/AppWrapper/AppWrapper';
 import { useRouter } from "next/router";
+import { withIronSession } from 'next-iron-session';
+import LoginForm from '@components/LoginForm/LoginForm';
+import AppWrapper from '@components/AppWrapper/AppWrapper';
 
 const style_IndexPage = css`
     min-height: 100vh;

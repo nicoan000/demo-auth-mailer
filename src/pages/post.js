@@ -1,20 +1,18 @@
-import React from 'react';
-import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css';
+import Editor from '@components/Editor/Editor';
+import { css } from '@emotion/css';
+
+const style_PostPage = css`
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+`;
 
 const Post = () => {
-    const { quill, quillRef, Quill } = useQuill({ modules: { magicUrl: true }});
-
-    if (Quill && !quill) { // For execute this line only once.
-      const MagicUrl = require('quill-magic-url').default; // Install with 'yarn add quill-magic-url'
-      Quill.register('modules/magicUrl', MagicUrl);
-    }
-  
     return (
-      <div style={{ width: 500, height: 300 }}>
-        <div ref={quillRef} />
-      </div>
-    );
+        <div className={style_PostPage}>
+            <Editor />
+        </div>
+    )
 };
 
 export default Post;

@@ -1,0 +1,24 @@
+useQuill offers options in the form of object
+    - theme: string
+        - https://quilljs.com/docs/themes/#themes
+        - snow: basic with toolbar
+        - bubble: basic without toolbar
+    - modules: obj
+        - allow's specific customization of quill
+        - each module is like a plugin of some sort, with their own page and API
+        - some modules are officially supported and you can pick and use them within the existing API
+        - toolbar module
+            - easily choose which options hsould be available in the toolbar
+            - you can group buttons by putting them in arrays
+            - create a custom html if you want to
+            - custom handlers are also available, with their own specific API
+        - keyboard module
+            - you can customize the way the keyboard input behaves, but it's not necessary
+        - history module
+            - changes the way the undo works
+        - clipboard module
+            - customizes the way copy paste works
+    - formats: obj
+        - some formats are accepted with or without the controller in the toolbar
+            - this determines if the user can for example copy paste other formats into the textbox
+        - by default all formats are available
