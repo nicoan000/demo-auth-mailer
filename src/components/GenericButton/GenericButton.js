@@ -1,9 +1,9 @@
 import style from './style.GenericButton';
 
-const GenericButton = ({label, type}) => {
+const GenericButton = ({label, type, click}) => {
 
     return (
-        <button className={style} type={type}>
+        <button className={style} type={type} onClick={click}>
             {label}
         </button>
     )

@@ -2,20 +2,27 @@ import React from 'react';
 import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css';
 import style from './style.Editor';
+import GenericButton from '@components/GenericButton/GenericButton';
 
 
-const Editor = () => {
-    const { quill, quillRef, Quill } = useQuill({ modules: { magicUrl: true }});
+const Editor = ({ click }) => {
 
-    if (Quill && !quill) { // For execute this line only once.
-      const MagicUrl = require('quill-magic-url').default; // Install with 'yarn add quill-magic-url'
-      Quill.register('modules/magicUrl', MagicUrl);
+    const { quill, quillRef, Quill } = useQuill({ modules: { magicUrl: true } });
+
+    if (Quill && !quill) {
+        const MagicUrl = require('quill-magic-url').default;
+        Quill.register('modules/magicUrl', MagicUrl);
     }
 
     return (
-      <div className={style}>
-        <div ref={quillRef} />
-      </div>
+        <div className={style}>
+            <div className="editor_container">
+                <div ref={quillRef} />
+            </div>
+            <div className="submission_container">
+                <GenericButton label="Submit" type="submit" click={() => click(quill)} />
+            </div>
+        </div>
     );
 };
 

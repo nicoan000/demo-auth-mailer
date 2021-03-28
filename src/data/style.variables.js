@@ -1,5 +1,6 @@
 export const fontSizes = {
-    standard: "calc(.5rem + (25 - 15) * ((100vw - 300px) / (1600 - 300)))"
+    standard: "clamp(.5rem, 1rem, 2rem)",
+    standard_big: "clamp(1rem, 2rem, 3rem)",
 };
 
 export const colors = {
