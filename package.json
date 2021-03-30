@@ -32,8 +32,10 @@
     "quill-magic-url": "^3.0.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-icons": "^4.2.0",
     "react-quilljs": "^1.2.14",
     "typeorm": "^0.2.31",
+    "uuid": "^8.3.2",
     "xss": "^1.0.8"
   },
   "devDependencies": {
