@@ -1,13 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
-import style from './style.Dropzone';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { BsUpload } from 'react-icons/bs';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { v4 as uuidv4 } from 'uuid';
+import style from './style.Dropzone';
+// import PostContext from '@utils/context/post-context';
+import {PostContext} from '@pages/post';
+import DropImageContainer from '@components/DropImageContainer/DropImageContainer';
 
 const max_file_size = 5 * 1048576; // in bytes
 
 const Dropzone = () => {
-    const [selectedFiles, setSelectedFiles] = useState([]);
+    const {selectedFiles, setSelectedFiles} = useContext(PostContext);
     const [errorMessage, setErrorMessage] = useState('');
     const modalImageRef = useRef();
 
@@ -51,10 +54,6 @@ const Dropzone = () => {
         setSelectedFiles(prevArray => prevArray.filter(item => item.id !== id));
     }
 
-    useEffect(() => {
-        console.log(selectedFiles);
-    }, [selectedFiles])
-
     const dragOver = (e) => {
         console.log('drag over');
         e.preventDefault();
@@ -79,16 +78,6 @@ const Dropzone = () => {
         }
     }
 
-    const attachImageRef = (file) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = e => {
-            modalImageRef.current.style.backgroundImage = `url(${e.target.result})`;
-        }
-
-        return modalImageRef;
-    }
-
 
     return (
         <div className={style}>
@@ -106,24 +95,7 @@ const Dropzone = () => {
                     </div>
                 )
                 : (
-                    <div className="drop_image_container">
-                        {selectedFiles.map((data, i) => 
-                            <div 
-                                className={[
-                                    "drop_block",
-                                    data.invalid ? "invalid" : ""
-                                ].join(' ')}
-                                key={i}
-                            >
-                                {!data.invalid && <div className="drop_image" ref={attachImageRef(data)}></div>}
-                                <div className="file_name_container">
-                                    <div className="file_name">{data.name.slice(0, 30)}</div>
-                                </div>
-                                {data.invalid &&<div className="info_icon"><AiOutlineInfoCircle /></div>}
-                                <button className="remove_btn" onClick={() => removeItem(data.id)}>X</button>
-                            </div>
-                        )}                        
-                    </div>
+                    <DropImageContainer files={selectedFiles}/>
                 )
 
             }

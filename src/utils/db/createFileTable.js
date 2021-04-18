@@ -2,14 +2,13 @@ import pool from './main';
 
 const query = `
 CREATE TABLE IF NOT EXISTS files (
-	id SERIAL PRIMARY KEY UNIQUE,
-	user_id INTEGER REFERENCES users (id),
-	file_base VARCHAR(50),
-    file_extension VARCHAR(4),
-	role VARCHAR(25)
+	id VARCHAR(36) PRIMARY KEY UNIQUE,
+    post_id INTEGER REFERENCES posts (id)
 );
 `;
 
-const createUserTable = () => pool.query(query);
+const createFileTable = () => {
+    return pool.query(query);
+}
 
-export default createUserTable;
+export default createFileTable;

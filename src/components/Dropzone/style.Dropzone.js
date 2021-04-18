@@ -7,7 +7,7 @@ const style_Dropzone = css`
     --drop-row-count: 2;
     --drop-row-gap: 10px;
     --drop-col-gap: 10px;
-
+    
     display: flex;
     flex-direction: column;
     align-items: center;

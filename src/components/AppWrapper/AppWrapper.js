@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Context from '../../utils/context';
 import Notification from '../Notification/Notification';
 
-const AppWrapper = (props) => {
+
+export const AppContext = React.createContext();
+
+const AppWrapper = props => {
     const [loginInfo, setLoginInfo] = useState({
         username: "",
         password: "",
@@ -19,19 +21,19 @@ const AppWrapper = (props) => {
     useEffect(() => {
         if (notification.shown) {
             setTimeout(() => {
-                setNotification({ ...notification, shown: false });
+                setNotification(prevState => ({ ...prevState, shown: false }));
             }, 3000)
         }
     }, [notification]);
 
     return (
-        <Context.Provider value={{
+        <AppContext.Provider value={{
             loginInfo, setLoginInfo,
             notification, setNotification
         }}>
             <Notification msg={notification.msg} shown={notification.shown} />
             {props.children}
-        </Context.Provider>
+        </AppContext.Provider>
     )
 };
 

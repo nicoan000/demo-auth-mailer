@@ -19,9 +19,6 @@ const Editor = ({ click }) => {
             <div className="editor_container">
                 <div ref={quillRef} />
             </div>
-            {/* <div className="submission_container">
-                <GenericButton label="Submit" type="submit" click={() => click(quill)} />
-            </div> */}
         </div>
     );
 };

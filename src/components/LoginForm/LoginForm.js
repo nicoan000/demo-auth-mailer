@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from "next/router";
-import AppContext from '@utils/context';
+import AppContext from '@utils/context/app-context';
 import validateForm from '@utils/validateForm';
 import LoginInput from '@components/Input/LoginInput';
 import GenericButton from '@components/GenericButton/GenericButton';

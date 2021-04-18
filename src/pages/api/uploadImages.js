@@ -5,10 +5,11 @@ import ironSessionConfig from '../../utils/config/ironSessionConfig';
 export default withIronSession(
     async (req, res) => {
         try {
+            console.log('/api/uploadImages');
             if (
-                !req.query.file.endsWith('.jpeg') &&
-                !req.query.file.endsWith('.png') &&
-                !req.query.file.endsWith('.jpg')
+                !req.query.fileName.endsWith('.jpeg') &&
+                !req.query.fileName.endsWith('.png') &&
+                !req.query.fileName.endsWith('.jpg')
             ) {
                 console.log('File format rejected');
                 return res.status(406).json({
@@ -34,17 +35,12 @@ export default withIronSession(
                         responseHeader: ["Content-Type", "access-control-allow-origin"],
                     },
                 ]);
-
-                console.log(`Configured bucket for CORS`);
             }
 
             await configureBucketCors();
 
-            console.log(req.session.get("user"));
-
-
             const bucket = storage.bucket(process.env.BUCKET_NAME);
-            const file = bucket.file(req.query.file);
+            const fileID = bucket.file(req.query.fileID);
 
             const options = {
                 expires: Date.now() + 1 * 60 * 1000, //  1 minute,
@@ -56,8 +52,8 @@ export default withIronSession(
                 ]
             };
 
-            const [response] = await file.generateSignedPostPolicyV4(options);
-            res.status(200).json(response || { works: true });
+            const [response] = await fileID.generateSignedPostPolicyV4(options);
+            res.status(200).json(response || { works: false });
         }
         catch (e) {
             console.log(e);

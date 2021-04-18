@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
 );
 `;
 
-const createUserTable = () => pool.query(query);
+const createUserTable = () => {
+    return pool.query(query);
+}
 
 export default createUserTable;
