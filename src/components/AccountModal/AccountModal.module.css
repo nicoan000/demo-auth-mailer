@@ -1,0 +1,9 @@
+.wrapper {
+    background-color: black;
+    position: absolute;
+    top: 200px;
+    width: 75%;
+    height: 500px;
+    left: 50%;
+    transform: translateX(-50%)
+}

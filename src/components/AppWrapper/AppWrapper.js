@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Notification from '../Notification/Notification';
+import Navbar from '@components/Navbar/Navbar';
+import AccountModal from '@components/AccountModal/AccountModal';
+import { css } from '@emotion/css';
 
 
 export const AppContext = React.createContext();
+
+const style = css`
+    height: 100%;
+    min-height: 100vh;
+`;
 
 const AppWrapper = props => {
     const [loginInfo, setLoginInfo] = useState({
@@ -27,12 +35,17 @@ const AppWrapper = props => {
     }, [notification]);
 
     return (
-        <AppContext.Provider value={{
-            loginInfo, setLoginInfo,
-            notification, setNotification
-        }}>
-            <Notification msg={notification.msg} shown={notification.shown} />
-            {props.children}
+        <AppContext.Provider
+            value={{
+                loginInfo, setLoginInfo,
+                notification, setNotification
+            }}
+        >
+            <div className={style}>
+                <Navbar />
+                <Notification msg={notification.msg} shown={notification.shown} />
+                {props.children}
+            </div>
         </AppContext.Provider>
     )
 };

@@ -5,17 +5,18 @@ const style_LoginForm = css`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(to bottom right, ${colors.background_components_lighter_2}, ${colors.background_components});
+    background: linear-gradient(to bottom right, rgba(36, 36, 36, .9), rgba(12, 12, 12, .9));
     padding: calc(1rem + 5vw);
-    border-radius: 5px;
+    border-radius: 10px;
     min-height: 200px;
     width: 300px;
-    box-shadow: 0px 0px 10px 1px black;
+    box-shadow: 0px 0px 7px 3px hsl(0, 0%, 0%, 20%);
     font-size: ${fontSizes.standard};    
+    margin-top: 10rem;
 
     & a {
         margin-top: 1rem;
-        font-size: 75%;
+        font-size: 1em;
         color: lightblue;
         text-decoration: underline;
         cursor: pointer;
@@ -23,6 +24,10 @@ const style_LoginForm = css`
         &:hover {
             color: lightgreen;
         }
+    }
+
+    & .description {
+        color: gray;
     }
 `;
 

@@ -18,7 +18,6 @@ const constructInputStyle = ({ textAlign, width, padding, fontSize, height } = {
     }
 `);
 
-
 const colors = {
     gold: '#80722A',
     primary: '#252525',
@@ -154,9 +153,9 @@ const MultiSelect = ({
             label = strAfterPrefix(label);
         }
 
-        if (disableDuplicates && items.every(item =>
-            item.key.toLowerCase() != inputValue.toLowerCase()
-            || item.key.toLowerCase() != strAfterPrefix(inputValue).toLowerCase()
+        if (disableDuplicates && items.some(item =>
+            item.key.toLowerCase() == inputValue.toLowerCase()
+            || item.key.toLowerCase() == strAfterPrefix(inputValue).toLowerCase()
         )) return;
 
         setItems(prevState => [...prevState, {
@@ -187,22 +186,12 @@ const MultiSelect = ({
         }
 
     };
-
-    const captureChange = e => {
-        console.log(e);
-        if (e.keyCode < 65 || e.keyCode > 90) {
-            return;
-        }
-        setInputValue(e.target.value);
-    }
-
-    console.log(placeholderText);
     return (
         <div className={style}>
             <input
                 type="text"
                 style={{ textIndent: contWidth.width - 3 }}
-                onChange={e => captureChange(e)}
+                onChange={e => setInputValue(e.target.value)}
                 onKeyDown={e => captureKey(e)}
                 placeholder={(items.length == 0 && inputValue.length == 0 && placeholderText) || ''}
                 value={inputValue}

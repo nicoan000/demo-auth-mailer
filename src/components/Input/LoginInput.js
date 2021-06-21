@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import style from './style.LoginInput';
-import AppContext from '@utils/context/app-context';
+import {AppContext} from '@components/AppWrapper/AppWrapper';
 
 const Input = ({description, field, placeholder, hideContent}) => {
     const { loginInfo, setLoginInfo } = useContext(AppContext);

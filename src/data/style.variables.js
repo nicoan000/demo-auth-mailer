@@ -1,5 +1,6 @@
 export const fontSizes = {
     standard: "clamp(.5rem, 1rem, 2rem)",
+    standard_medium: "clamp(.75rem, 1.5rem, 2.5rem)",
     standard_big: "clamp(1rem, 2rem, 3rem)",
 };
 

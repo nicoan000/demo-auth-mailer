@@ -17,8 +17,6 @@ const style_PostPage = css`
     grid-template-columns: 1fr;
     justify-items: center;
     width: 100%;
-    height: 100%;
-    min-height: 100vh;
 
     & .subtitle_container {
         width: 100%;
@@ -26,9 +24,10 @@ const style_PostPage = css`
         flex-direction: row;
         max-width: 700px;
         justify-content: space-between;
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
+        margin-top: 2rem;
         align-items: center;
-        margin-top: -5rem;
+        ${'' /* margin-top: -7rem; */}
     }
 `;
 

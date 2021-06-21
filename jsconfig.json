@@ -7,5 +7,6 @@
             "@utils/*": ["src/utils/*"],
             "@data/*": ["src/data/*"]
         }
-    }
+    },
+    "checkjs": true
 }

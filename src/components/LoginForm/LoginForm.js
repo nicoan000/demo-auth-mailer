@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from "next/router";
-import AppContext from '@utils/context/app-context';
+import {AppContext} from '@components/AppWrapper/AppWrapper';
 import validateForm from '@utils/validateForm';
 import LoginInput from '@components/Input/LoginInput';
 import GenericButton from '@components/GenericButton/GenericButton';
 import style from './style.LoginForm';
+
 
 const LoginForm = ({ type, submitFunc }) => {
     const { loginInfo, notification, setNotification } = useContext(AppContext);
@@ -26,7 +27,6 @@ const LoginForm = ({ type, submitFunc }) => {
                     body: JSON.stringify({ username, password, repeatPassword, email, usernameOrEmail })
                 });
 
-                console.log(response);
                 if (response.ok) {
                     return router.push("/profile");
                 }
@@ -46,33 +46,33 @@ const LoginForm = ({ type, submitFunc }) => {
                 <LoginInput
                     description="username -Or- Email"
                     field="usernameOrEmail"
-                    placeholder="Name123"
+                    placeholder="Input your username or email..."
                 />
             }
             {type == "signup" &&
                 <LoginInput
                     description="username"
                     field="username"
-                    placeholder="Awesome_Person123"
+                    placeholder="Input your username..."
                 />
             }
             <LoginInput
                 description="Password"
                 field="password"
-                placeholder="notPassword123"
+                placeholder="Input your password..."
             />
             {type == "signup" &&
                 <LoginInput
                     description="Repeat Password"
                     field="repeatPassword"
-                    placeholder="notPassword123"
+                    placeholder="Repeat your password..."
                 />
             }
             {type == "signup" &&
                 <LoginInput
                     description="e-mail"
                     field="email"
-                    placeholder="someone@somewhere.com"
+                    placeholder="Input your email..."
                 />
             }
             <GenericButton
@@ -87,6 +87,9 @@ const LoginForm = ({ type, submitFunc }) => {
                     : <a>Click here to register instead</a>
                 }
             </Link>
+            <div className="description">
+                
+            </div>
         </form>
     )
 };

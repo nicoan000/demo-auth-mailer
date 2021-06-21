@@ -5,7 +5,6 @@ const style_TitleContainer = () => css`
     display: flex;
     flex-direction: row;
     max-width: 700px;
-    margin-top: 5rem;
     ${Input}
 
     & input {
